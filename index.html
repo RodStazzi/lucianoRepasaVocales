@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende a Trazar las Vocales</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            text-align: center;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #main-content-area {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            padding: 0 15px;
+            flex-wrap: wrap;
+        }
+
+        #images-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .letter-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: white;
+            padding: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 4px solid transparent;
+            object-fit: cover;
+        }
+
+        .letter-image:hover {
+            transform: scale(1.05);
+        }
+
+        .letter-image.active {
+            border: 4px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        #canvas-container {
+            border: clamp(4px, 1vw, 8px) solid #FFD700;
+            border-radius: clamp(15px, 2vw, 25px);
+            margin: 15px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            touch-action: none;
+            max-width: 90vw;
+            max-height: 60vh;
+            background: white;
+        }
+
+        #progress-info {
+            margin: 15px 0;
+            font-size: clamp(16px, 3vw, 20px);
+            color: #ffffff;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        #color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            gap: clamp(8px, 2vw, 15px);
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .color-box {
+            width: clamp(45px, 8vw, 65px);
+            height: clamp(45px, 8vw, 65px);
+            border-radius: 50%;
+            cursor: pointer;
+            border: clamp(3px, 0.5vw, 5px) solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .color-box:hover {
+            transform: scale(1.1);
+        }
+
+        .color-box.active {
+            border-color: #FFDC00;
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(255, 220, 0, 0.7);
+        }
+
+        .color-box.red { background-color: #FF4136; }
+        .color-box.blue { background-color: #0074D9; }
+        .color-box.green { background-color: #2ECC40; }
+        .color-box.yellow { background-color: #FFDC00; }
+        .color-box.purple { background-color: #B10DC9; }
+        .color-box.pink { background-color: #FF69B4; }
+
+        #reward-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            font-size: clamp(60px, 12vw, 100px);
+            z-index: 1000;
+            animation: reward-animation 1.5s ease-out;
+        }
+
+        @keyframes reward-animation {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(-180deg); opacity: 0; }
+            70% { transform: translate(-50%, -50%) scale(1.2) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Media queries para diferentes tamaños de pantalla */
+        @media (max-width: 768px) {
+            #main-content-area {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            #images-container {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .letter-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            body {
+                padding: 5px;
+            }
+            
+            #canvas-container {
+                margin: 10px 0;
+                max-width: 95vw;
+                max-height: 50vh;
+            }
+            
+            #color-palette {
+                margin: 15px 0;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                margin: 5px 0;
+            }
+            
+            #canvas-container {
+                max-width: 98vw;
+                max-height: 45vh;
+            }
+            
+            .letter-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 ¡Aprende las Vocales! 🌟</h1>
+
+    <div id="main-content-area">
+        <div id="images-container">
+            <img class="letter-image" id="image1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3CRect fill='%23FFE4E1' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF6B6B'%3EA%3C/text%3E%3C/svg%3E" alt="Imagen 1" />
+            <img class="letter-image" id="image2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E8F5E8' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='120' text-anchor='middle' fill='%234ECDC4'%3E🍎%3C/text%3E%3C/svg%3E" alt="Imagen 2" />
+        </div>
+        
+        <div id="canvas-container">
+            <canvas id="letter-canvas"></canvas>
+        </div>
+    </div>
+
+    <div id="progress-info">
+        Vocal: <span id="current-letter">A</span> - 
+        Forma: <span id="current-form">Mayúscula</span> - 
+        Trazo <span id="current-line">1</span> de <span id="total-lines">1</span>
+    </div>
+
+    <div id="color-palette">
+        <div class="color-box red active" data-color="#FF4136"></div>
+        <div class="color-box blue" data-color="#0074D9"></div>
+        <div class="color-box green" data-color="#2ECC40"></div>
+        <div class="color-box yellow" data-color="#FFDC00"></div>
+        <div class="color-box purple" data-color="#B10DC9"></div>
+        <div class="color-box pink" data-color="#FF69B4"></div>
+    </div>
+    
+    <div id="reward-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+    <script>
+        // --- CONFIGURACIÓN INICIAL ---
+        let currentColor = '#FF4136';
+        let currentCombinationIndex = 0;
+
+        //const letterKeys = ['A', 'E', 'I', 'O', 'U'];
+        const letterKeys = ['A'];
+        const formNames = ['Mayúscula', 'Minúscula', 'Mayúscula Manuscrita', 'Minúscula Manuscrita'];
+        
+        // Crear array con todas las combinaciones y shufflearlo
+        let allCombinations = [];
+        letterKeys.forEach(letter => {
+            formNames.forEach(form => {
+                allCombinations.push({ letter, form });
+            });
+        });
+        
+        // Función para shufflear array
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+        
+function loadAudios() {
+    let loadedCount = 0;
+    const totalAudios = letterKeys.length; 
+    
+    letterKeys.forEach(key => {
+        letterAudios[key] = new Howl({
+            src: [`sounds/vocal${key}.mp3`],
+            onload: function() {
+                loadedCount++;
+                console.log(`Audio para la vocal ${key} cargado.`);
+                if (loadedCount === totalAudios) {
+                    console.log('Todos los audios cargados. Iniciando aplicación.');
+                    loadCurrentLetter();
+                }
+            },
+            onloaderror: function() {
+                console.log(`No se pudo cargar el audio para la vocal ${key}`);
+                loadedCount++;
+                if (loadedCount === totalAudios) {
+                    console.log('Carga de audios finalizada (con errores). Iniciando aplicación.');
+                    loadCurrentLetter();
+                }
+            }
+        });
+    });
+}
+
+function unlockAudioAndPlayFirstSound() {
+    if (!audioUnlocked && currentLetter) {
+        audioUnlocked = true;
+        
+        if (Howler.ctx && Howler.ctx.state !== 'running') {
+            Howler.ctx.resume();
+        }
+
+        const currentCombination = allCombinations[currentCombinationIndex];
+        playLetterAudio(currentCombination.letter);
+    }
+}
+
+        // Shufflear las combinaciones al inicio
+        allCombinations = shuffleArray(allCombinations);
+        
+        let successSound;
+        let letterAudios = {};
+        let audioTimeout;
+        let canvasScale = 1;
+        let canvasSize = 400;
+        let audioUnlocked = false;
+
+        // Datos de imágenes para cada vocal
+        const letterImages = {
+            // 'A': [
+            //     { 
+            //         svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFE4E1' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF6B6B'%3EA%3C/text%3E%3C/svg%3E`,
+            //         name: 'Letra A'
+            //     },
+            //     { 
+            //         svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E8F5E8' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%234ECDC4'%3E🛬%3C/text%3E%3C/svg%3E`,
+            //         name: 'Avión'
+            //     }
+            // ],
+            'A': [
+                { 
+                    src: 'img/avion.jpeg',
+                    name: 'Avión'
+                },
+                { 
+                    src: 'img/ala.jpeg',
+                    name: 'Ala'
+                },
+                { 
+                    src: 'img/anillo.jpeg',
+                    name: 'Anillo'
+                },
+                { 
+                    src: 'img/auto.jpeg',
+                    name: 'Auto'
+                }
+                ],
+            'E': [
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E6F3FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%235DADE2'%3EE%3C/text%3E%3C/svg%3E`,
+                    name: 'Letra E'
+                },
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF0E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23F39C12'%3E🐘%3C/text%3E%3C/svg%3E`,
+                    name: 'Elefante'
+                }
+            ],
+            'I': [
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0E6FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23AF7AC5'%3EI%3C/text%3E%3C/svg%3E`,
+                    name: 'Letra I'
+                },
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E8F8F5' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%2317A2B8'%3E🏝️%3C/text%3E%3C/svg%3E`,
+                    name: 'Isla'
+                }
+            ],
+            'O': [
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF5E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF8C00'%3EO%3C/text%3E%3C/svg%3E`,
+                    name: 'Letra O'
+                },
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFFACD' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23DAA520'%3E🐑%3C/text%3E%3C/svg%3E`,
+                    name: 'Oveja'
+                }
+            ],
+            'U': [
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0FFF0' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%2332CD32'%3EU%3C/text%3E%3C/svg%3E`,
+                    name: 'Letra U'
+                },
+                { 
+                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F5F0FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%239932CC'%3E🍇%3C/text%3E%3C/svg%3E`,
+                    name: 'Uvas'
+                }
+            ]
+        };
+
+        // Coordenadas para las diferentes formas de cada vocal
+        const letters = {
+            'A': {
+                'Mayúscula': [
+                    { start: { x: 140, y: 350 }, end: { x: 200, y: 120 } },
+                    { start: { x: 200, y: 120 }, end: { x: 260, y: 350 } },
+                    { start: { x: 165, y: 260 }, end: { x: 235, y: 260 } }
+                ],
+'Minúscula': [
+  { start: { x: 140, y: 144 }, end: { x: 168, y: 131 } },
+  { start: { x: 168, y: 131 }, end: { x: 194, y: 127 } },
+  { start: { x: 194, y: 127 }, end: { x: 219, y: 129 } },
+  { start: { x: 219, y: 129 }, end: { x: 240, y: 135 } },
+  { start: { x: 240, y: 135 }, end: { x: 257, y: 151 } },
+  { start: { x: 257, y: 151 }, end: { x: 260, y: 180 } },
+  { start: { x: 260, y: 180 }, end: { x: 260, y: 310 } },
+  { start: { x: 260, y: 240 }, end: { x: 247, y: 200 } },
+  { start: { x: 247, y: 200 }, end: { x: 230, y: 180 } },
+  { start: { x: 230, y: 180 }, end: { x: 190, y: 175 } },
+  { start: { x: 190, y: 175 }, end: { x: 150, y: 195 } },
+  { start: { x: 150, y: 195 }, end: { x: 135, y: 230 } },
+  { start: { x: 135, y: 230 }, end: { x: 135, y: 260 } },
+  { start: { x: 135, y: 260 }, end: { x: 150, y: 295 } },
+  { start: { x: 150, y: 295 }, end: { x: 190, y: 315 } },
+  { start: { x: 190, y: 315 }, end: { x: 230, y: 310 } },
+  { start: { x: 230, y: 310 }, end: { x: 260, y: 285 } }
+],
+                'Mayúscula Manuscrita': [
+                    { start: { x: 211, y: 148 }, end: { x: 170, y: 160 } },
+                    { start: { x: 170, y: 160 }, end: { x: 140, y: 190 } },
+                    { start: { x: 140, y: 190 }, end: { x: 130, y: 230 } },
+                    { start: { x: 130, y: 230 }, end: { x: 130, y: 280 } },
+                    { start: { x: 130, y: 280 }, end: { x: 140, y: 320 } },
+                    { start: { x: 140, y: 320 }, end: { x: 170, y: 350 } },
+                    { start: { x: 170, y: 350 }, end: { x: 210, y: 360 } },
+                    { start: { x: 210, y: 360 }, end: { x: 250, y: 350 } },
+                    { start: { x: 250, y: 350 }, end: { x: 280, y: 320 } },
+                    { start: { x: 280, y: 320 }, end: { x: 290, y: 280 } },
+                    { start: { x: 290, y: 280 }, end: { x: 290, y: 230 } },
+                    { start: { x: 290, y: 230 }, end: { x: 280, y: 190 } },
+                    { start: { x: 280, y: 190 }, end: { x: 250, y: 160 } },
+                    { start: { x: 250, y: 160 }, end: { x: 211, y: 148 } },
+                    { start: { x: 290, y: 280 }, end: { x: 301, y: 320 } },
+                    { start: { x: 301, y: 320 }, end: { x: 307, y: 330 } },
+                    { start: { x: 307, y: 330 }, end: { x: 315, y: 340 } }, 
+                    { start: { x: 315, y: 340 }, end: { x: 327, y: 352 } },
+                    { start: { x: 327, y: 352 }, end: { x: 340, y: 354 } }
+                ],
+                'Minúscula Manuscrita': [
+                    { start: { x: 201, y: 162 }, end: { x: 170, y: 170 } },
+                    { start: { x: 170, y: 170 }, end: { x: 140, y: 190 } },
+                    { start: { x: 140, y: 190 }, end: { x: 130, y: 220 } },
+                    { start: { x: 130, y: 220 }, end: { x: 130, y: 260 } },
+                    { start: { x: 130, y: 260 }, end: { x: 140, y: 290 } },
+                    { start: { x: 140, y: 290 }, end: { x: 170, y: 310 } },
+                    { start: { x: 170, y: 310 }, end: { x: 200, y: 320 } },
+                    { start: { x: 200, y: 320 }, end: { x: 230, y: 310 } },
+                    { start: { x: 230, y: 310 }, end: { x: 250, y: 290 } },
+                    { start: { x: 250, y: 290 }, end: { x: 260, y: 260 } },
+                    { start: { x: 260, y: 260 }, end: { x: 260, y: 220 } },
+                    { start: { x: 260, y: 220 }, end: { x: 250, y: 190 } },
+                    { start: { x: 250, y: 190 }, end: { x: 230, y: 170 } },
+                    { start: { x: 230, y: 170 }, end: { x: 201, y: 162 } },
+                    { start: { x: 260, y: 260 }, end: { x: 266, y: 283 } },
+                    { start: { x: 266, y: 283 }, end: { x: 271, y: 299 } },
+                    { start: { x: 271, y: 299 }, end: { x: 280, y: 309 } },
+                    { start: { x: 280, y: 309 }, end: { x: 295, y: 316 } },
+                    { start: { x: 295, y: 316 }, end: { x: 317, y: 315 } }
+                ]
+            },
+            'E': {
+                'Mayúscula': [
+                    { start: { x: 160, y: 120 }, end: { x: 160, y: 350 } },
+                    { start: { x: 160, y: 120 }, end: { x: 280, y: 120 } },
+                    { start: { x: 160, y: 235 }, end: { x: 250, y: 235 } },
+                    { start: { x: 160, y: 350 }, end: { x: 280, y: 350 } }
+                ],
+                'Minúscula': [
+                    { start: { x: 160, y: 240 }, end: { x: 160, y: 200 } },
+                    { start: { x: 160, y: 200 }, end: { x: 190, y: 170 } },
+                    { start: { x: 190, y: 170 }, end: { x: 230, y: 160 } },
+                    { start: { x: 230, y: 160 }, end: { x: 270, y: 170 } },
+                    { start: { x: 270, y: 170 }, end: { x: 300, y: 200 } },
+                    { start: { x: 300, y: 200 }, end: { x: 160, y: 220 } },
+                    { start: { x: 160, y: 240 }, end: { x: 190, y: 270 } },
+                    { start: { x: 190, y: 270 }, end: { x: 230, y: 290 } },
+                    { start: { x: 230, y: 290 }, end: { x: 270, y: 280 } },
+                    { start: { x: 270, y: 280 }, end: { x: 300, y: 250 } }
+                ],
+                'Mayúscula Manuscrita': [
+                    { start: { x: 150, y: 130 }, end: { x: 150, y: 340 } },
+                    { start: { x: 150, y: 130 }, end: { x: 270, y: 130 } },
+                    { start: { x: 150, y: 235 }, end: { x: 240, y: 235 } },
+                    { start: { x: 150, y: 340 }, end: { x: 270, y: 340 } }
+                ],
+                'Minúscula Manuscrita': [
+                    { start: { x: 150, y: 240 }, end: { x: 150, y: 200 } },
+                    { start: { x: 150, y: 200 }, end: { x: 180, y: 170 } },
+                    { start: { x: 180, y: 170 }, end: { x: 220, y: 160 } },
+                    { start: { x: 220, y: 160 }, end: { x: 260, y: 170 } },
+                    { start: { x: 260, y: 170 }, end: { x: 290, y: 200 } },
+                    { start: { x: 290, y: 200 }, end: { x: 150, y: 220 } },
+                    { start: { x: 150, y: 240 }, end: { x: 180, y: 270 } },
+                    { start: { x: 180, y: 270 }, end: { x: 220, y: 290 } },
+                    { start: { x: 220, y: 290 }, end: { x: 260, y: 280 } },
+                    { start: { x: 260, y: 280 }, end: { x: 290, y: 250 } }
+                ]
+            },
+            'I': {
+                'Mayúscula': [
+                    { start: { x: 160, y: 120 }, end: { x: 240, y: 120 } },
+                    { start: { x: 200, y: 120 }, end: { x: 200, y: 350 } },
+                    { start: { x: 160, y: 350 }, end: { x: 240, y: 350 } }
+                ],
+                'Minúscula': [
+                    { start: { x: 200, y: 120 }, end: { x: 200, y: 140 } },
+                    { start: { x: 200, y: 180 }, end: { x: 200, y: 350 } }
+                ],
+                'Mayúscula Manuscrita': [
+                    { start: { x: 150, y: 130 }, end: { x: 250, y: 130 } },
+                    { start: { x: 200, y: 130 }, end: { x: 200, y: 340 } },
+                    { start: { x: 150, y: 340 }, end: { x: 250, y: 340 } }
+                ],
+                'Minúscula Manuscrita': [
+                    { start: { x: 190, y: 120 }, end: { x: 190, y: 140 } },
+                    { start: { x: 190, y: 180 }, end: { x: 190, y: 340 } }
+                ]
+            },
+            'O': {
+                'Mayúscula': [
+                    { start: { x: 200, y: 120 }, end: { x: 170, y: 125 } },
+                    { start: { x: 170, y: 125 }, end: { x: 140, y: 150 } },
+                    { start: { x: 140, y: 150 }, end: { x: 130, y: 190 } },
+                    { start: { x: 130, y: 190 }, end: { x: 130, y: 280 } },
+                    { start: { x: 130, y: 280 }, end: { x: 140, y: 320 } },
+                    { start: { x: 140, y: 320 }, end: { x: 170, y: 345 } },
+                    { start: { x: 170, y: 345 }, end: { x: 200, y: 350 } },
+                    { start: { x: 200, y: 350 }, end: { x: 230, y: 345 } },
+                    { start: { x: 230, y: 345 }, end: { x: 260, y: 320 } },
+                    { start: { x: 260, y: 320 }, end: { x: 270, y: 280 } },
+                    { start: { x: 270, y: 280 }, end: { x: 270, y: 190 } },
+                    { start: { x: 270, y: 190 }, end: { x: 260, y: 150 } },
+                    { start: { x: 260, y: 150 }, end: { x: 230, y: 125 } },
+                    { start: { x: 230, y: 125 }, end: { x: 200, y: 120 } }
+                ],
+                'Minúscula': [
+                    { start: { x: 200, y: 170 }, end: { x: 170, y: 175 } },
+                    { start: { x: 170, y: 175 }, end: { x: 150, y: 195 } },
+                    { start: { x: 150, y: 195 }, end: { x: 140, y: 220 } },
+                    { start: { x: 140, y: 220 }, end: { x: 140, y: 260 } },
+                    { start: { x: 140, y: 260 }, end: { x: 150, y: 285 } },
+                    { start: { x: 150, y: 285 }, end: { x: 170, y: 305 } },
+                    { start: { x: 170, y: 305 }, end: { x: 200, y: 310 } },
+                    { start: { x: 200, y: 310 }, end: { x: 230, y: 305 } },
+                    { start: { x: 230, y: 305 }, end: { x: 250, y: 285 } },
+                    { start: { x: 250, y: 285 }, end: { x: 260, y: 260 } },
+                    { start: { x: 260, y: 260 }, end: { x: 260, y: 220 } },
+                    { start: { x: 260, y: 220 }, end: { x: 250, y: 195 } },
+                    { start: { x: 250, y: 195 }, end: { x: 230, y: 175 } },
+                    { start: { x: 230, y: 175 }, end: { x: 200, y: 170 } }
+                ],
+                'Mayúscula Manuscrita': [
+                    { start: { x: 190, y: 130 }, end: { x: 160, y: 135 } },
+                    { start: { x: 160, y: 135 }, end: { x: 130, y: 160 } },
+                    { start: { x: 130, y: 160 }, end: { x: 120, y: 200 } },
+                    { start: { x: 120, y: 200 }, end: { x: 120, y: 270 } },
+                    { start: { x: 120, y: 270 }, end: { x: 130, y: 310 } },
+                    { start: { x: 130, y: 310 }, end: { x: 160, y: 335 } },
+                    { start: { x: 160, y: 335 }, end: { x: 190, y: 340 } },
+                    { start: { x: 190, y: 340 }, end: { x: 220, y: 335 } },
+                    { start: { x: 220, y: 335 }, end: { x: 250, y: 310 } },
+                    { start: { x: 250, y: 310 }, end: { x: 260, y: 270 } },
+                    { start: { x: 260, y: 270 }, end: { x: 260, y: 200 } },
+                    { start: { x: 260, y: 200 }, end: { x: 250, y: 160 } },
+                    { start: { x: 250, y: 160 }, end: { x: 220, y: 135 } },
+                    { start: { x: 220, y: 135 }, end: { x: 190, y: 130 } }
+                ],
+                'Minúscula Manuscrita': [
+                    { start: { x: 190, y: 180 }, end: { x: 160, y: 185 } },
+                    { start: { x: 160, y: 185 }, end: { x: 140, y: 205 } },
+                    { start: { x: 140, y: 205 }, end: { x: 130, y: 230 } },
+                    { start: { x: 130, y: 230 }, end: { x: 130, y: 250 } },
+                    { start: { x: 130, y: 250 }, end: { x: 140, y: 275 } },
+                    { start: { x: 140, y: 275 }, end: { x: 160, y: 295 } },
+                    { start: { x: 160, y: 295 }, end: { x: 190, y: 300 } },
+                    { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
+                    { start: { x: 220, y: 295 }, end: { x: 240, y: 275 } },
+                    { start: { x: 240, y: 275 }, end: { x: 250, y: 250 } },
+                    { start: { x: 250, y: 250 }, end: { x: 250, y: 230 } },
+                    { start: { x: 250, y: 230 }, end: { x: 240, y: 205 } },
+                    { start: { x: 240, y: 205 }, end: { x: 220, y: 185 } },
+                    { start: { x: 220, y: 185 }, end: { x: 190, y: 180 } }
+                ]
+            },
+            'U': {
+                'Mayúscula': [
+                    { start: { x: 150, y: 120 }, end: { x: 150, y: 300 } },
+                    { start: { x: 150, y: 300 }, end: { x: 170, y: 335 } },
+                    { start: { x: 170, y: 335 }, end: { x: 200, y: 350 } },
+                    { start: { x: 200, y: 350 }, end: { x: 230, y: 335 } },
+                    { start: { x: 230, y: 335 }, end: { x: 250, y: 300 } },
+                    { start: { x: 250, y: 300 }, end: { x: 250, y: 120 } }
+                ],
+                'Minúscula': [
+                    { start: { x: 160, y: 180 }, end: { x: 160, y: 260 } },
+                    { start: { x: 160, y: 260 }, end: { x: 170, y: 285 } },
+                    { start: { x: 170, y: 285 }, end: { x: 190, y: 300 } },
+                    { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
+                    { start: { x: 220, y: 295 }, end: { x: 240, y: 280 } },
+                    { start: { x: 240, y: 280 }, end: { x: 240, y: 120 } }
+                ],
+                'Mayúscula Manuscrita': [
+                    { start: { x: 140, y: 130 }, end: { x: 140, y: 290 } },
+                    { start: { x: 140, y: 290 }, end: { x: 160, y: 325 } },
+                    { start: { x: 160, y: 325 }, end: { x: 190, y: 340 } },
+                    { start: { x: 190, y: 340 }, end: { x: 220, y: 325 } },
+                    { start: { x: 220, y: 325 }, end: { x: 240, y: 290 } },
+                    { start: { x: 240, y: 290 }, end: { x: 240, y: 130 } }
+                ],
+                'Minúscula Manuscrita': [
+                    { start: { x: 150, y: 190 }, end: { x: 150, y: 250 } },
+                    { start: { x: 150, y: 250 }, end: { x: 160, y: 275 } },
+                    { start: { x: 160, y: 275 }, end: { x: 180, y: 290 } },
+                    { start: { x: 180, y: 290 }, end: { x: 210, y: 285 } },
+                    { start: { x: 210, y: 285 }, end: { x: 230, y: 270 } },
+                    { start: { x: 230, y: 270 }, end: { x: 230, y: 130 } }
+                ]
+            }
+        };
+
+        let currentLetter;
+        let currentLineIndex = 0;
+        let isDrawingCurrentLine = false;
+        let startPointReached = false;
+        let isDrawingEnabled = true;
+        let resizeTimeout;
+
+        function setup() {
+            calculateCanvasSize();
+            let canvas = createCanvas(canvasSize, canvasSize);
+            canvas.parent('canvas-container');
+            
+            setTimeout(() => {
+                setupColorPalette();
+                setupImageClicks();
+                
+                // Cargar sonido de éxito usando un SVG de audio simple
+                //  successSound = {
+                //     play: () => {
+                //         // Crear un sonido simple usando Web Audio API
+                //         if (audioUnlocked) {
+                //             try {
+                //                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                //                 const oscillator = audioCtx.createOscillator();
+                //                 const gainNode = audioCtx.createGain();
+                                
+                //                 oscillator.connect(gainNode);
+                //                 gainNode.connect(audioCtx.destination);
+                                
+                //                 oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                //                 oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+                //                 oscillator.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2);
+                                
+                //                 gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                //                 gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                                
+                //                 oscillator.start(audioCtx.currentTime);
+                //                 oscillator.stop(audioCtx.currentTime + 0.3);
+                //             } catch (e) {
+                //                 console.log('No se pudo reproducir el sonido de éxito');
+                //             }
+                //         }
+                //     }
+                // };
+                successSound = new Howl({ 
+                    src: ['810706__rayfaiq__short-loud-success-sound.mp3'],
+                    onloaderror: function() {
+                        console.log('No se pudo cargar el sonido de éxito');
+                    }
+                });
+                //loadCurrentLetter();
+                loadAudios();
+            }, 100);
+            
+            window.addEventListener('resize', handleResize);
+        }
+
+        function calculateCanvasSize() {
+            const maxWidth = Math.min(window.innerWidth * 0.6, 400);
+            const maxHeight = Math.min(window.innerHeight * 0.5, 400);
+            canvasSize = Math.max(Math.min(maxWidth, maxHeight), 250);
+            canvasScale = canvasSize / 400;
+        }
+
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                calculateCanvasSize();
+                resizeCanvas(canvasSize, canvasSize);
+                setTimeout(() => {
+                    if (currentLetter) {
+                        drawDottedLetter();
+                    }
+                }, 50);
+            }, 100);
+        }
+
+        function scalePoint(point) {
+            return {
+                x: point.x * canvasScale,
+                y: point.y * canvasScale
+            };
+        }
+
+        function draw() {
+            if (mouseIsPressed && isDrawingEnabled) {
+                let currentLine = currentLetter[currentLineIndex];
+                let scaledStart = scalePoint(currentLine.start);
+                let scaledEnd = scalePoint(currentLine.end);
+                
+                if (!startPointReached) {
+                    let distToStart = dist(mouseX, mouseY, scaledStart.x, scaledStart.y);
+                    if (distToStart < 30 * canvasScale) {
+                        startPointReached = true;
+                        isDrawingCurrentLine = true;
+                    }
+                }
+                
+                if (isDrawingCurrentLine && startPointReached) {
+                    if (isOnLinePath(mouseX, mouseY, {start: scaledStart, end: scaledEnd})) {
+                        stroke(currentColor);
+                        strokeWeight(20 * canvasScale);
+                        line(pmouseX, pmouseY, mouseX, mouseY);
+                        
+                        let distToEnd = dist(mouseX, mouseY, scaledEnd.x, scaledEnd.y);
+                        if (distToEnd < 30 * canvasScale) {
+                            completeCurrentLine();
+                        }
+                    }
+                }
+            }
+        }
+
+        function loadCurrentLetter() {
+            if (audioTimeout) {
+                clearTimeout(audioTimeout);
+                audioTimeout = null;
+            }
+            
+            let currentCombination = allCombinations[currentCombinationIndex];
+            let letterKey = currentCombination.letter;
+            let formKey = currentCombination.form;
+            currentLetter = letters[letterKey][formKey];
+
+            // Actualizar imágenes
+            updateImages(letterKey);
+
+            currentLineIndex = 0;
+            startPointReached = false;
+            isDrawingCurrentLine = false;
+            isDrawingEnabled = true;
+            
+            updateProgressInfo(letterKey, formKey);
+            drawDottedLetter();
+            
+            if (audioUnlocked) {
+                audioTimeout = setTimeout(() => {
+                    playLetterAudio(letterKey);
+                }, 500);
+            }
+        }
+
+function getRandomImagesForA() {
+    const allImagesA = letterImages['A']; // Array con las 4 imágenes
+    const shuffled = [...allImagesA]; // Crear una copia del array
+    // Algoritmo Fisher-Yates para mezclar el array
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // Retornar solo las primeras 2 del array mezclado
+    return [shuffled[0], shuffled[1]];
+}
+
+        function updateImages(letterKey) {
+            const image1 = document.getElementById('image1');
+            const image2 = document.getElementById('image2');
+            
+            // if (letterImages[letterKey]) {
+            //     image1.src = letterImages[letterKey][0].svg;
+            //     image1.alt = letterImages[letterKey][0].name;
+            //     image2.src = letterImages[letterKey][1].svg;
+            //     image2.alt = letterImages[letterKey][1].name;
+            // }
+
+    console.log('Actualizando imágenes para letra:', letterKey); // Para debug
+    console.log('Datos disponibles:', letterImages[letterKey]); // Para debug
+    
+    if (letterImages[letterKey]) {
+        if (letterKey === 'A') {
+
+            const randomImages = getRandomImagesForA();
+    console.log('randomImages ', randomImages);
+
+            // Para A, usar las rutas de archivos
+            image1.src = randomImages[0].src;
+            image1.alt = randomImages[0].name;
+            image2.src = randomImages[1].src;
+            image2.alt = randomImages[1].name;
+            
+            console.log('Imágenes aleatorias seleccionadas:');
+            console.log('Imagen 1:', randomImages[0].name, '- src:', image1.src);
+            console.log('Imagen 2:', randomImages[1].name, '- src:', image2.src);
+        } else {
+            // Para otras vocales, usar SVG como antes
+            image1.src = letterImages[letterKey][0].svg;
+            image1.alt = letterImages[letterKey][0].name;
+            image2.src = letterImages[letterKey][1].svg;
+            image2.alt = letterImages[letterKey][1].name;
+        }
+    } else {
+        console.error('No se encontraron imágenes para la letra:', letterKey);
+    }
+        }
+
+        // function playLetterAudio(letterKey) {
+        //     // Sintetizar voz para la letra
+        //     if ('speechSynthesis' in window && audioUnlocked) {
+        //         const utterance = new SpeechSynthesisUtterance(`Hola Luciano, esta es la letra ${letterKey}${letterKey}${letterKey}${letterKey}${letterKey}${letterKey}`);
+        //         utterance.lang = 'es-ES';
+        //         utterance.rate = 0.8;
+        //         utterance.pitch = 1.2;
+        //         speechSynthesis.speak(utterance);
+        //     }
+        // }
+        function playLetterAudio(letterKey) {
+           if (letterAudios[letterKey] && letterAudios[letterKey].state() === 'loaded') {
+               letterAudios[letterKey].play();
+           } else {
+               console.log(`Audio para la vocal ${letterKey} no está disponible`);
+           }
+       }
+        function drawDottedLetter() {
+            if (!currentLetter || canvasSize < 100) return;
+            
+            background('#FFFFFF');
+            
+            // Dibujar todas las líneas de la letra
+            for (let i = 0; i < currentLetter.length; i++) {
+                let line = currentLetter[i];
+                let scaledStart = scalePoint(line.start);
+                let scaledEnd = scalePoint(line.end);
+                
+                if (i < currentLineIndex) {
+                    // Líneas ya completadas - verde sólido
+                    stroke('#90EE90');
+                    strokeWeight(15 * canvasScale);
+                    drawSolidLine(scaledStart.x, scaledStart.y, scaledEnd.x, scaledEnd.y);
+                } else if (i === currentLineIndex) {
+                    // Línea actual - amarillo punteado grueso
+                    stroke('#FFD700');
+                    strokeWeight(18 * canvasScale);
+                    drawDashedLine(scaledStart.x, scaledStart.y, scaledEnd.x, scaledEnd.y, 15 * canvasScale);
+                } else {
+                    // Líneas pendientes - gris punteado
+                    stroke('#AAAAAA');
+                    strokeWeight(12 * canvasScale);
+                    drawDashedLine(scaledStart.x, scaledStart.y, scaledEnd.x, scaledEnd.y, 8 * canvasScale);
+                }
+            }
+            
+            // Dibujar puntos de inicio y fin para la línea actual
+            if (currentLineIndex < currentLetter.length) {
+                let currentLine = currentLetter[currentLineIndex];
+                let scaledStart = scalePoint(currentLine.start);
+                let scaledEnd = scalePoint(currentLine.end);
+                
+                // Punto de inicio (rojo) con borde blanco
+                fill('#FFFFFF');
+                noStroke();
+                ellipse(scaledStart.x, scaledStart.y, 32 * canvasScale, 32 * canvasScale);
+                fill('#FF0000');
+                ellipse(scaledStart.x, scaledStart.y, 25 * canvasScale, 25 * canvasScale);
+                
+                // Punto de fin (verde) con borde blanco
+                fill('#FFFFFF');
+                ellipse(scaledEnd.x, scaledEnd.y, 27 * canvasScale, 27 * canvasScale);
+                fill('#00FF00');
+                ellipse(scaledEnd.x, scaledEnd.y, 20 * canvasScale, 20 * canvasScale);
+                
+                // Añadir números a los puntos para mayor claridad
+                fill('#FFFFFF');
+                textAlign(CENTER, CENTER);
+                textSize(12 * canvasScale);
+                textStyle(BOLD);
+                text('1', scaledStart.x, scaledStart.y);
+                text('2', scaledEnd.x, scaledEnd.y);
+            }
+        }
+
+        function drawSolidLine(x1, y1, x2, y2) {
+            line(x1, y1, x2, y2);
+        }
+
+        function drawDashedLine(x1, y1, x2, y2, dashLength) {
+            let distance = dist(x1, y1, x2, y2);
+            let dashCount = Math.floor(distance / (dashLength * 2));
+            
+            if (dashCount === 0) {
+                line(x1, y1, x2, y2);
+                return;
+            }
+            
+            let stepX = (x2 - x1) / (dashCount * 2);
+            let stepY = (y2 - y1) / (dashCount * 2);
+            
+            for (let i = 0; i < dashCount; i++) {
+                let startX = x1 + (stepX * i * 2);
+                let startY = y1 + (stepY * i * 2);
+                let endX = startX + stepX;
+                let endY = startY + stepY;
+                line(startX, startY, endX, endY);
+            }
+            
+            // Dibujar el último segmento si es necesario
+            let lastX = x1 + (stepX * dashCount * 2);
+            let lastY = y1 + (stepY * dashCount * 2);
+            if (dist(lastX, lastY, x2, y2) > dashLength / 2) {
+                line(lastX, lastY, x2, y2);
+            }
+        }
+
+        function isOnLinePath(x, y, line) {
+            let A = line.end.x - line.start.x;
+            let B = line.end.y - line.start.y;
+            let C = x - line.start.x;
+            let D = y - line.start.y;
+            
+            let dot = C * A + D * B;
+            let lenSq = A * A + B * B;
+            
+            if (lenSq === 0) return dist(x, y, line.start.x, line.start.y) < 40 * canvasScale;
+            
+            let param = dot / lenSq;
+            
+            let xx, yy;
+            if (param < 0) {
+                xx = line.start.x;
+                yy = line.start.y;
+            } else if (param > 1) {
+                xx = line.end.x;
+                yy = line.end.y;
+            } else {
+                xx = line.start.x + param * A;
+                yy = line.start.y + param * B;
+            }
+            
+            let distance = dist(x, y, xx, yy);
+            return distance < 40 * canvasScale;
+        }
+
+        function completeCurrentLine() {
+            currentLineIndex++;
+            startPointReached = false;
+            isDrawingCurrentLine = false;
+            
+            if (currentLineIndex >= currentLetter.length) {
+                showReward();
+            } else {
+                updateProgressInfo();
+                drawDottedLetter();
+            }
+        }
+
+        function updateProgressInfo(letterKey, formKey) {
+            const currentCombination = allCombinations[currentCombinationIndex];
+            document.getElementById('current-letter').textContent = letterKey || currentCombination.letter;
+            document.getElementById('current-form').textContent = formKey || currentCombination.form;
+            document.getElementById('current-line').textContent = currentLineIndex + 1;
+            document.getElementById('total-lines').textContent = currentLetter.length;
+        }
+
+        function showReward() {
+            const rewardContainer = document.getElementById('reward-container');
+            rewardContainer.innerHTML = '<span>🌟</span><span>🎉</span><span>🌟</span>';
+            
+            if (successSound) {
+                successSound.play();
+            }
+            
+            isDrawingEnabled = false;
+            
+            if (audioTimeout) {
+                clearTimeout(audioTimeout);
+            }
+            
+            setTimeout(() => {
+                rewardContainer.innerHTML = '';
+                nextCombination();
+            }, 2000);
+        }
+
+        function nextCombination() {
+            currentCombinationIndex++;
+            if (currentCombinationIndex >= allCombinations.length) {
+                // Reiniciar y shufflear de nuevo
+                currentCombinationIndex = 0;
+                allCombinations = shuffleArray(allCombinations);
+            }
+            loadCurrentLetter();
+        }
+
+        function setupColorPalette() {
+            const colorPalette = document.getElementById('color-palette');
+            const colorBoxes = document.querySelectorAll('.color-box');
+            
+            colorPalette.addEventListener('click', (e) => {
+                if (e.target.classList.contains('color-box')) {
+                    currentColor = e.target.dataset.color;
+                    colorBoxes.forEach(box => box.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+        }
+
+        function setupImageClicks() {
+            const images = document.querySelectorAll('.letter-image');
+            
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    unlockAudioAndPlayImageSound(img, index);
+                });
+            });
+        }
+
+        // function unlockAudioAndPlayImageSound(img, index) {
+        //     // Activar el efecto visual
+        //     img.classList.add('active');
+        //     setTimeout(() => {
+        //         img.classList.remove('active');
+        //     }, 500);
+            
+        //     // Desbloquear audio si es necesario
+        //     if (!audioUnlocked) {
+        //         audioUnlocked = true;
+        //     }
+            
+        //     // Reproducir el audio del nombre del elemento
+        //     if ('speechSynthesis' in window) {
+        //         const currentCombination = allCombinations[currentCombinationIndex];
+        //         const letterKey = currentCombination.letter;
+        //         const imageName = letterImages[letterKey] ? letterImages[letterKey][index].name : `Imagen ${index + 1}`;
+
+        //         const utterance = new SpeechSynthesisUtterance(imageName);
+        //         utterance.lang = 'es-ES';
+        //         utterance.rate = 0.9;
+        //         utterance.pitch = 1.1;
+        //         speechSynthesis.speak(utterance);
+        //     }
+        // }
+        function unlockAudioAndPlayImageSound(img, index) {
+    img.classList.add('active');
+    setTimeout(() => {
+        img.classList.remove('active');
+    }, 500);
+    
+    if (!audioUnlocked) {
+        audioUnlocked = true;
+    }
+    
+    if ('speechSynthesis' in window) {
+        // Simplemente usar el atributo 'alt' de la imagen que se hace clic
+        const imageName = img.alt;
+        
+        console.log(`Reproduciendo audio para: ${imageName}`);
+        
+        const utterance = new SpeechSynthesisUtterance(imageName);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.6;    // ← MÁS LENTO (era 0.9, ahora 0.6)
+        utterance.pitch = 1.1;   // Mantener el tono
+        utterance.volume = 1.0;
+        speechSynthesis.speak(utterance);
+    }
+}
+
+        // function touchStarted() {
+        //     if (!audioUnlocked) {
+        //         audioUnlocked = true;
+        //     }
+
+        //     if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        //         return false;
+        //     }
+        // }
+        function touchStarted() {
+            unlockAudioAndPlayFirstSound(); // Agregar esta línea
+
+            if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+                return false;
+            }
+        }
+
+        // function mousePressed() {
+        //     if (!audioUnlocked) {
+        //         audioUnlocked = true;
+        //     }
+        // }
+
+        function mousePressed() {
+            unlockAudioAndPlayFirstSound(); // Agregar esta línea
+        }
+
+        function mouseReleased() {
+            if (isDrawingCurrentLine && !startPointReached) {
+                isDrawingCurrentLine = false;
+            }
+        }
+
+        function windowResized() {
+            handleResize();
+        }
+    </script>
+</body>
+</html>
