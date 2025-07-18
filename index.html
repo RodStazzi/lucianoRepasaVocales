@@ -204,8 +204,8 @@
     </style>
 </head>
 <body>
-    <h1>🌟 ¡Aprende las Vocales! 🌟</h1>
-
+    <h1>🌟 ¡Hola Luciano! 🌟</h1>
+    <h2>... estas son las vocales. </h2>
     <div id="main-content-area">
         <div id="images-container">
             <img class="letter-image" id="image1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3CRect fill='%23FFE4E1' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF6B6B'%3EA%3C/text%3E%3C/svg%3E" alt="Imagen 1" />
@@ -243,7 +243,7 @@
         let currentCombinationIndex = 0;
 
         //const letterKeys = ['A', 'E', 'I', 'O', 'U'];
-        const letterKeys = ['A'];
+        const letterKeys = ['O'];
         const formNames = ['Mayúscula', 'Minúscula', 'Mayúscula Manuscrita', 'Minúscula Manuscrita'];
         
         // Crear array con todas las combinaciones y shufflearlo
@@ -333,7 +333,7 @@ function unlockAudioAndPlayFirstSound() {
                 },
                 { 
                     src: 'img/ala.jpeg',
-                    name: 'Ala'
+                    name: 'A-la'
                 },
                 { 
                     src: 'img/anillo.jpeg',
@@ -345,43 +345,107 @@ function unlockAudioAndPlayFirstSound() {
                 }
                 ],
             'E': [
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E6F3FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%235DADE2'%3EE%3C/text%3E%3C/svg%3E`,
+                //     name: 'Letra E'
+                // },
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF0E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23F39C12'%3E🐘%3C/text%3E%3C/svg%3E`,
+                //     name: 'Elefante'
+                // }
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E6F3FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%235DADE2'%3EE%3C/text%3E%3C/svg%3E`,
-                    name: 'Letra E'
+                    src: 'img/elefante.jpeg',
+                    name: 'Elefante'
                 },
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF0E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23F39C12'%3E🐘%3C/text%3E%3C/svg%3E`,
-                    name: 'Elefante'
+                    src: 'img/escorpion.jpeg',
+                    name: 'Escorpión'
+                },
+                { 
+                    src: 'img/escuela.jpeg',
+                    name: 'Escuela'
+                },
+                { 
+                    src: 'img/espejo.jpeg',
+                    name: 'Espejo'
                 }
             ],
             'I': [
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0E6FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23AF7AC5'%3EI%3C/text%3E%3C/svg%3E`,
+                //     name: 'Letra I'
+                // },
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E8F8F5' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%2317A2B8'%3E🏝️%3C/text%3E%3C/svg%3E`,
+                //     name: 'Isla'
+                // }
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0E6FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23AF7AC5'%3EI%3C/text%3E%3C/svg%3E`,
-                    name: 'Letra I'
+                    src: 'img/iglesia.jpeg',
+                    name: 'Iglesia'
                 },
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23E8F8F5' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%2317A2B8'%3E🏝️%3C/text%3E%3C/svg%3E`,
+                    src: 'img/iglu.jpeg',
+                    name: 'Iglú'
+                },
+                { 
+                    src: 'img/isla.jpeg',
                     name: 'Isla'
+                },
+                { 
+                    src: 'img/invierno.jpeg',
+                    name: 'Invierno'
                 }
             ],
             'O': [
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF5E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF8C00'%3EO%3C/text%3E%3C/svg%3E`,
+                //     name: 'Letra O'
+                // },
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFFACD' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23DAA520'%3E🐑%3C/text%3E%3C/svg%3E`,
+                //     name: 'Oveja'
+                // }
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF5E6' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%23FF8C00'%3EO%3C/text%3E%3C/svg%3E`,
-                    name: 'Letra O'
+                    src: 'img/ojo.jpeg',
+                    name: 'Ojo'
                 },
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23FFFACD' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%23DAA520'%3E🐑%3C/text%3E%3C/svg%3E`,
-                    name: 'Oveja'
+                    src: 'img/oro.jpeg',
+                    name: 'Oro'
+                },
+                { 
+                    src: 'img/oso.jpeg',
+                    name: 'Oso'
+                },
+                { 
+                    src: 'img/ola.jpeg',
+                    name: 'Ola'
                 }
             ],
             'U': [
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0FFF0' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%2332CD32'%3EU%3C/text%3E%3C/svg%3E`,
+                //     name: 'Letra U'
+                // },
+                // { 
+                //     svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F5F0FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%239932CC'%3E🍇%3C/text%3E%3C/svg%3E`,
+                //     name: 'Uvas'
+                // }
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F0FFF0' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial Black' font-size='120' text-anchor='middle' fill='%2332CD32'%3EU%3C/text%3E%3C/svg%3E`,
-                    name: 'Letra U'
+                    src: 'img/uva.jpeg',
+                    name: 'Uva'
                 },
                 { 
-                    svg: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23F5F0FF' width='200' height='200'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='100' text-anchor='middle' fill='%239932CC'%3E🍇%3C/text%3E%3C/svg%3E`,
-                    name: 'Uvas'
+                    src: 'img/urna.jpeg',
+                    name: 'Urna'
+                },
+                { 
+                    src: 'img/uno.jpeg',
+                    name: 'Uno'
+                },
+                { 
+                    src: 'img/uña.jpeg',
+                    name: 'Uña'
                 }
             ]
         };
@@ -464,34 +528,71 @@ function unlockAudioAndPlayFirstSound() {
                     { start: { x: 160, y: 350 }, end: { x: 280, y: 350 } }
                 ],
                 'Minúscula': [
-                    { start: { x: 160, y: 240 }, end: { x: 160, y: 200 } },
-                    { start: { x: 160, y: 200 }, end: { x: 190, y: 170 } },
-                    { start: { x: 190, y: 170 }, end: { x: 230, y: 160 } },
-                    { start: { x: 230, y: 160 }, end: { x: 270, y: 170 } },
-                    { start: { x: 270, y: 170 }, end: { x: 300, y: 200 } },
-                    { start: { x: 300, y: 200 }, end: { x: 160, y: 220 } },
-                    { start: { x: 160, y: 240 }, end: { x: 190, y: 270 } },
-                    { start: { x: 190, y: 270 }, end: { x: 230, y: 290 } },
-                    { start: { x: 230, y: 290 }, end: { x: 270, y: 280 } },
-                    { start: { x: 270, y: 280 }, end: { x: 300, y: 250 } }
+  { start: { x: 300, y: 250 }, end: { x: 270, y: 280 } },
+  { start: { x: 270, y: 280 }, end: { x: 270, y: 280 } },
+  { start: { x: 270, y: 280 }, end: { x: 230, y: 290 } },
+  { start: { x: 230, y: 290 }, end: { x: 190, y: 270 } },
+  { start: { x: 190, y: 270 }, end: { x: 160, y: 240 } },
+  { start: { x: 160, y: 240 }, end: { x: 160, y: 200 } },
+  { start: { x: 160, y: 200 }, end: { x: 190, y: 170 } },
+  { start: { x: 190, y: 170 }, end: { x: 230, y: 160 } },
+  { start: { x: 230, y: 160 }, end: { x: 270, y: 170 } },
+  { start: { x: 270, y: 170 }, end: { x: 300, y: 200 } },
+  { start: { x: 300, y: 200 }, end: { x: 300, y: 220 } },
+  { start: { x: 300, y: 220 }, end: { x: 160, y: 220 } },
                 ],
                 'Mayúscula Manuscrita': [
-                    { start: { x: 150, y: 130 }, end: { x: 150, y: 340 } },
-                    { start: { x: 150, y: 130 }, end: { x: 270, y: 130 } },
-                    { start: { x: 150, y: 235 }, end: { x: 240, y: 235 } },
-                    { start: { x: 150, y: 340 }, end: { x: 270, y: 340 } }
+{ start: { x: 256, y: 100 }, end: { x: 238, y: 97 } },
+{ start: { x: 238, y: 97 }, end: { x: 219, y: 98 } },
+{ start: { x: 219, y: 98 }, end: { x: 199, y: 105 } },
+{ start: { x: 199, y: 105 }, end: { x: 181, y: 116 } },
+{ start: { x: 181, y: 116 }, end: { x: 165, y: 129 } },
+{ start: { x: 165, y: 129 }, end: { x: 154, y: 153 } },
+{ start: { x: 154, y: 153 }, end: { x: 166, y: 179 } },
+{ start: { x: 166, y: 179 }, end: { x: 186, y: 197 } },
+{ start: { x: 186, y: 197 }, end: { x: 203, y: 200 } },
+{ start: { x: 203, y: 200 }, end: { x: 222, y: 196 } },
+{ start: { x: 222, y: 196 }, end: { x: 227, y: 182 } },
+{ start: { x: 227, y: 182 }, end: { x: 210, y: 179 } },
+{ start: { x: 210, y: 179 }, end: { x: 191, y: 184 } },
+{ start: { x: 191, y: 184 }, end: { x: 160, y: 200 } },
+{ start: { x: 160, y: 200 }, end: { x: 140, y: 220 } },
+{ start: { x: 140, y: 220 }, end: { x: 125, y: 250 } },
+{ start: { x: 125, y: 250 }, end: { x: 120, y: 290 } },
+{ start: { x: 120, y: 290 }, end: { x: 140, y: 320 } },
+{ start: { x: 140, y: 320 }, end: { x: 180, y: 330 } },
+{ start: { x: 180, y: 330 }, end: { x: 220, y: 325 } },
+{ start: { x: 220, y: 325 }, end: { x: 250, y: 310 } },
+{ start: { x: 250, y: 310 }, end: { x: 265, y: 280}}
                 ],
                 'Minúscula Manuscrita': [
-                    { start: { x: 150, y: 240 }, end: { x: 150, y: 200 } },
-                    { start: { x: 150, y: 200 }, end: { x: 180, y: 170 } },
-                    { start: { x: 180, y: 170 }, end: { x: 220, y: 160 } },
-                    { start: { x: 220, y: 160 }, end: { x: 260, y: 170 } },
-                    { start: { x: 260, y: 170 }, end: { x: 290, y: 200 } },
-                    { start: { x: 290, y: 200 }, end: { x: 150, y: 220 } },
-                    { start: { x: 150, y: 240 }, end: { x: 180, y: 270 } },
-                    { start: { x: 180, y: 270 }, end: { x: 220, y: 290 } },
-                    { start: { x: 220, y: 290 }, end: { x: 260, y: 280 } },
-                    { start: { x: 260, y: 280 }, end: { x: 290, y: 250 } }
+{ start: { x: 37, y: 379 }, end: { x: 58, y: 379 } },
+{ start: { x: 58, y: 379 }, end: { x: 82, y: 373 } },
+{ start: { x: 82, y: 373 }, end: { x: 103, y: 364 } },
+{ start: { x: 103, y: 364 }, end: { x: 124, y: 354 } },
+{ start: { x: 124, y: 354 }, end: { x: 142, y: 342 } },
+{ start: { x: 142, y: 342 }, end: { x: 154, y: 325 } },
+{ start: { x: 154, y: 325 }, end: { x: 164, y: 304 } },
+{ start: { x: 164, y: 304 }, end: { x: 171, y: 281 } },
+{ start: { x: 171, y: 281 }, end: { x: 178, y: 258 } },
+{ start: { x: 178, y: 258 }, end: { x: 179, y: 239 } },
+{ start: { x: 179, y: 239 }, end: { x: 179, y: 219 } },
+{ start: { x: 179, y: 219 }, end: { x: 173, y: 200 } },
+{ start: { x: 173, y: 200 }, end: { x: 156, y: 199 } },
+{ start: { x: 156, y: 199 }, end: { x: 146, y: 211 } },
+{ start: { x: 146, y: 211 }, end: { x: 139, y: 230 } },
+{ start: { x: 139, y: 230 }, end: { x: 134, y: 244 } },
+{ start: { x: 134, y: 244 }, end: { x: 131, y: 263 } },
+{ start: { x: 131, y: 263 }, end: { x: 132, y: 283 } },
+{ start: { x: 132, y: 283 }, end: { x: 134, y: 301 } },
+{ start: { x: 134, y: 301 }, end: { x: 137, y: 319 } },
+{ start: { x: 137, y: 319 }, end: { x: 145, y: 350 } },
+{ start: { x: 145, y: 350 }, end: { x: 155, y: 365 } },
+{ start: { x: 155, y: 365 }, end: { x: 170, y: 375 } },
+{ start: { x: 170, y: 375 }, end: { x: 190, y: 380 } },
+{ start: { x: 190, y: 380 }, end: { x: 213, y: 377 } },
+{ start: { x: 213, y: 377 }, end: { x: 228, y: 371 } },
+{ start: { x: 228, y: 371 }, end: { x: 250, y: 358}}
                 ]
             },
             'I': {
@@ -505,13 +606,60 @@ function unlockAudioAndPlayFirstSound() {
                     { start: { x: 200, y: 180 }, end: { x: 200, y: 350 } }
                 ],
                 'Mayúscula Manuscrita': [
-                    { start: { x: 150, y: 130 }, end: { x: 250, y: 130 } },
-                    { start: { x: 200, y: 130 }, end: { x: 200, y: 340 } },
-                    { start: { x: 150, y: 340 }, end: { x: 250, y: 340 } }
+  { start: { x: 150, y: 68 }, end: { x: 168, y: 57 } },
+  { start: { x: 168, y: 57 }, end: { x: 185, y: 50 } },
+  { start: { x: 185, y: 50 }, end: { x: 203, y: 51 } },
+  { start: { x: 203, y: 51 }, end: { x: 219, y: 63 } },
+  { start: { x: 219, y: 63 }, end: { x: 240, y: 63 } },
+  { start: { x: 240, y: 63 }, end: { x: 261, y: 51 } },
+  { start: { x: 261, y: 51 }, end: { x: 280, y: 55 } },
+  { start: { x: 280, y: 55 }, end: { x: 278, y: 85 } },
+  { start: { x: 278, y: 85 }, end: { x: 276, y: 115 } },
+  { start: { x: 276, y: 115 }, end: { x: 274, y: 145 } },
+  { start: { x: 274, y: 145 }, end: { x: 272, y: 175 } },
+  { start: { x: 272, y: 175 }, end: { x: 270, y: 205 } },
+  { start: { x: 270, y: 205 }, end: { x: 268, y: 235 } },
+  { start: { x: 268, y: 235 }, end: { x: 266, y: 265 } },
+  { start: { x: 266, y: 265 }, end: { x: 264, y: 295 } },
+  { start: { x: 264, y: 295 }, end: { x: 262, y: 325 } },
+  { start: { x: 262, y: 325 }, end: { x: 255, y: 345 } },
+  { start: { x: 255, y: 345 }, end: { x: 245, y: 360 } },
+  { start: { x: 245, y: 360 }, end: { x: 233, y: 372 } },
+  { start: { x: 233, y: 372 }, end: { x: 213, y: 378 } },
+  { start: { x: 213, y: 378 }, end: { x: 187, y: 379 } },
+  { start: { x: 187, y: 379 }, end: { x: 160, y: 375 } },
+  { start: { x: 160, y: 375 }, end: { x: 144, y: 363 } },
+  { start: { x: 144, y: 363 }, end: { x: 135, y: 346 } },
+  { start: { x: 135, y: 346 }, end: { x: 130, y: 323 } }
                 ],
                 'Minúscula Manuscrita': [
-                    { start: { x: 190, y: 120 }, end: { x: 190, y: 140 } },
-                    { start: { x: 190, y: 180 }, end: { x: 190, y: 340 } }
+  { start: { x: 305, y: 95 }, end: { x: 310, y: 97 } },
+  { start: { x: 310, y: 97 }, end: { x: 312, y: 102 } },
+  { start: { x: 312, y: 102 }, end: { x: 310, y: 107 } },
+  { start: { x: 310, y: 107 }, end: { x: 305, y: 109 } },
+  { start: { x: 305, y: 109 }, end: { x: 300, y: 107 } },
+  { start: { x: 300, y: 107 }, end: { x: 298, y: 102 } },
+  { start: { x: 298, y: 102 }, end: { x: 300, y: 97 } },
+  { start: { x: 300, y: 97 }, end: { x: 305, y: 95 } },
+  
+{ start: { x: 195, y: 294 }, end: { x: 212, y: 297 } },
+{ start: { x: 212, y: 297 }, end: { x: 230, y: 295 } },
+{ start: { x: 230, y: 295 }, end: { x: 244, y: 284 } },
+{ start: { x: 244, y: 284 }, end: { x: 256, y: 271 } },
+{ start: { x: 256, y: 271 }, end: { x: 264, y: 259 } },
+{ start: { x: 264, y: 259 }, end: { x: 273, y: 243 } },
+{ start: { x: 273, y: 243 }, end: { x: 279, y: 226 } },
+{ start: { x: 279, y: 226 }, end: { x: 289, y: 201 } },
+{ start: { x: 289, y: 201 }, end: { x: 300, y: 155 } },
+{ start: { x: 300, y: 155 }, end: { x: 296, y: 185 } },
+{ start: { x: 296, y: 185 }, end: { x: 290, y: 224 } },
+{ start: { x: 290, y: 224 }, end: { x: 294, y: 258 } },
+{ start: { x: 294, y: 258 }, end: { x: 302, y: 283 } },
+{ start: { x: 302, y: 283 }, end: { x: 319, y: 297 } },
+{ start: { x: 319, y: 297 }, end: { x: 341, y: 302 } },
+{ start: { x: 341, y: 302 }, end: { x: 360, y: 297 } },
+{ start: { x: 360, y: 297 }, end: { x: 376, y: 283 } },
+{ start: { x: 376, y: 283 }, end: { x: 391, y: 265}}
                 ]
             },
             'O': {
@@ -548,70 +696,132 @@ function unlockAudioAndPlayFirstSound() {
                     { start: { x: 230, y: 175 }, end: { x: 200, y: 170 } }
                 ],
                 'Mayúscula Manuscrita': [
-                    { start: { x: 190, y: 130 }, end: { x: 160, y: 135 } },
-                    { start: { x: 160, y: 135 }, end: { x: 130, y: 160 } },
-                    { start: { x: 130, y: 160 }, end: { x: 120, y: 200 } },
-                    { start: { x: 120, y: 200 }, end: { x: 120, y: 270 } },
-                    { start: { x: 120, y: 270 }, end: { x: 130, y: 310 } },
-                    { start: { x: 130, y: 310 }, end: { x: 160, y: 335 } },
-                    { start: { x: 160, y: 335 }, end: { x: 190, y: 340 } },
-                    { start: { x: 190, y: 340 }, end: { x: 220, y: 335 } },
-                    { start: { x: 220, y: 335 }, end: { x: 250, y: 310 } },
-                    { start: { x: 250, y: 310 }, end: { x: 260, y: 270 } },
-                    { start: { x: 260, y: 270 }, end: { x: 260, y: 200 } },
-                    { start: { x: 260, y: 200 }, end: { x: 250, y: 160 } },
-                    { start: { x: 250, y: 160 }, end: { x: 220, y: 135 } },
-                    { start: { x: 220, y: 135 }, end: { x: 190, y: 130 } }
+  { start: { x: 170.0, y: 120.0 }, end: { x: 155.56, y: 133.10 } },
+  { start: { x: 155.56, y: 133.10 }, end: { x: 143.33, y: 154.94 } },
+  { start: { x: 143.33, y: 154.94 }, end: { x: 136.67, y: 176.77 } },
+  { start: { x: 136.67, y: 176.77 }, end: { x: 134.44, y: 200.06 } },
+  { start: { x: 134.44, y: 200.06 }, end: { x: 131.11, y: 221.90 } },
+  { start: { x: 131.11, y: 221.90 }, end: { x: 130.0, y: 246.65 } },
+  { start: { x: 130.0, y: 246.65 }, end: { x: 130.0, y: 268.48 } },
+  { start: { x: 130.0, y: 268.48 }, end: { x: 134.44, y: 293.23 } },
+  { start: { x: 134.44, y: 293.23 }, end: { x: 143.33, y: 313.61 } },
+  { start: { x: 143.33, y: 313.61 }, end: { x: 156.67, y: 332.53 } },
+  { start: { x: 156.67, y: 332.53 }, end: { x: 174.44, y: 344.18 } },
+  { start: { x: 174.44, y: 344.18 }, end: { x: 191.11, y: 348.54 } },
+  { start: { x: 191.11, y: 348.54 }, end: { x: 210.0, y: 350.0 } },
+  { start: { x: 210.0, y: 350.0 }, end: { x: 232.22, y: 347.09 } },
+  { start: { x: 232.22, y: 347.09 }, end: { x: 252.22, y: 332.53 } },
+  { start: { x: 252.22, y: 332.53 }, end: { x: 263.33, y: 309.24 } },
+  { start: { x: 263.33, y: 309.24 }, end: { x: 268.89, y: 278.67 } },
+  { start: { x: 268.89, y: 278.67 }, end: { x: 270.0, y: 248.10 } },
+  { start: { x: 270.0, y: 248.10 }, end: { x: 267.78, y: 220.44 } },
+  { start: { x: 267.78, y: 220.44 }, end: { x: 264.44, y: 191.33 } },
+  { start: { x: 264.44, y: 191.33 }, end: { x: 261.11, y: 169.49 } },
+  { start: { x: 261.11, y: 169.49 }, end: { x: 254.44, y: 147.66 } },
+  { start: { x: 254.44, y: 147.66 }, end: { x: 242.22, y: 131.65 } },
+  { start: { x: 242.22, y: 131.65 }, end: { x: 223.33, y: 125.82 } },
+  { start: { x: 223.33, y: 125.82 }, end: { x: 201.11, y: 127.28 } },
+  { start: { x: 201.11, y: 127.28 }, end: { x: 178.89, y: 137.47 } },
+  { start: { x: 178.89, y: 137.47 }, end: { x: 163.33, y: 159.30 } },
+  { start: { x: 163.33, y: 159.30 }, end: { x: 157.78, y: 182.59 } },
+  { start: { x: 157.78, y: 182.59 }, end: { x: 154.44, y: 213.16 } }
                 ],
                 'Minúscula Manuscrita': [
-                    { start: { x: 190, y: 180 }, end: { x: 160, y: 185 } },
-                    { start: { x: 160, y: 185 }, end: { x: 140, y: 205 } },
-                    { start: { x: 140, y: 205 }, end: { x: 130, y: 230 } },
-                    { start: { x: 130, y: 230 }, end: { x: 130, y: 250 } },
-                    { start: { x: 130, y: 250 }, end: { x: 140, y: 275 } },
-                    { start: { x: 140, y: 275 }, end: { x: 160, y: 295 } },
-                    { start: { x: 160, y: 295 }, end: { x: 190, y: 300 } },
-                    { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
-                    { start: { x: 220, y: 295 }, end: { x: 240, y: 275 } },
-                    { start: { x: 240, y: 275 }, end: { x: 250, y: 250 } },
-                    { start: { x: 250, y: 250 }, end: { x: 250, y: 230 } },
-                    { start: { x: 250, y: 230 }, end: { x: 240, y: 205 } },
-                    { start: { x: 240, y: 205 }, end: { x: 220, y: 185 } },
-                    { start: { x: 220, y: 185 }, end: { x: 190, y: 180 } }
+{ start: { x: 26, y: 241 }, end: { x: 62, y: 231}},
+{ start: { x: 62, y: 231 }, end: { x: 86, y: 213}},
+{ start: { x: 86, y: 213 }, end: { x: 98, y: 191}},
+{ start: { x: 98, y: 191 }, end: { x: 103, y: 168}},
+{ start: { x: 103, y: 168 }, end: { x: 107, y: 153}},
+{ start: { x: 107, y: 153 }, end: { x: 103, y: 184}},
+{ start: { x: 103, y: 184 }, end: { x: 106, y: 204 }},
+{ start: { x: 106, y: 204 }, end: { x: 111, y: 220 }},
+{ start: { x: 111, y: 220 }, end: { x: 120, y: 234 }},
+{ start: { x: 120, y: 234 }, end: { x: 136, y: 244 }},
+{ start: { x: 136, y: 244 }, end: { x: 162, y: 246 }},
+{ start: { x: 162, y: 246 }, end: { x: 185, y: 239 }},
+{ start: { x: 185, y: 239 }, end: { x: 207, y: 218 }},
+{ start: { x: 207, y: 218 }, end: { x: 218, y: 192 }},
+{ start: { x: 218, y: 192 }, end: { x: 222, y: 163 }},
+{ start: { x: 222, y: 163 }, end: { x: 220, y: 137 }},
+{ start: { x: 220, y: 137 }, end: { x: 215, y: 120 }},
+{ start: { x: 215, y: 120 }, end: { x: 202, y: 111 }},
+{ start: { x: 202, y: 111 }, end: { x: 178, y: 109 }},
+{ start: { x: 178, y: 109 }, end: { x: 156, y: 112 }},
+{ start: { x: 156, y: 112 }, end: { x: 138, y: 117 }},
+{ start: { x: 138, y: 117 }, end: { x: 124, y: 126 }},
+{ start: { x: 124, y: 126 }, end: { x: 118, y: 139 }},
+{ start: { x: 118, y: 139 }, end: { x: 131, y: 149 }},
+{ start: { x: 131, y: 149 }, end: { x: 153, y: 148 }},
+{ start: { x: 153, y: 148 }, end: { x: 177, y: 146 }},
+{ start: { x: 177, y: 146 }, end: { x: 197, y: 139 }},
+{ start: { x: 197, y: 139 }, end: { x: 214, y: 132 }},
+{ start: { x: 248, y: 117 }, end: { x: 230, y: 126}},
+{ start: { x: 230, y: 126 }, end: { x: 214, y: 132}}
                 ]
             },
             'U': {
                 'Mayúscula': [
-                    { start: { x: 150, y: 120 }, end: { x: 150, y: 300 } },
-                    { start: { x: 150, y: 300 }, end: { x: 170, y: 335 } },
-                    { start: { x: 170, y: 335 }, end: { x: 200, y: 350 } },
-                    { start: { x: 200, y: 350 }, end: { x: 230, y: 335 } },
-                    { start: { x: 230, y: 335 }, end: { x: 250, y: 300 } },
-                    { start: { x: 250, y: 300 }, end: { x: 250, y: 120 } }
+  { start: { x: 141, y: 122 }, end: { x: 140, y: 284 } },
+  { start: { x: 140, y: 284 }, end: { x: 148, y: 313 } },
+  { start: { x: 148, y: 313 }, end: { x: 170, y: 335 } },
+  { start: { x: 170, y: 335 }, end: { x: 200, y: 350 } },
+  { start: { x: 200, y: 350 }, end: { x: 230, y: 335 } },
+  { start: { x: 230, y: 335 }, end: { x: 254, y: 315 } },
+  { start: { x: 254, y: 315 }, end: { x: 262, y: 284 } },
+  { start: { x: 262, y: 284 }, end: { x: 263, y: 122 } }
                 ],
                 'Minúscula': [
-                    { start: { x: 160, y: 180 }, end: { x: 160, y: 260 } },
-                    { start: { x: 160, y: 260 }, end: { x: 170, y: 285 } },
-                    { start: { x: 170, y: 285 }, end: { x: 190, y: 300 } },
-                    { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
-                    { start: { x: 220, y: 295 }, end: { x: 240, y: 280 } },
-                    { start: { x: 240, y: 280 }, end: { x: 240, y: 120 } }
+  { start: { x: 160, y: 211 }, end: { x: 160, y: 260 } },
+  { start: { x: 160, y: 260 }, end: { x: 170, y: 285 } },
+  { start: { x: 170, y: 285 }, end: { x: 190, y: 300 } },
+  { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
+  { start: { x: 220, y: 295 }, end: { x: 240, y: 280 } },
+  { start: { x: 240, y: 280 }, end: { x: 247, y: 256 } },
+  { start: { x: 247, y: 256 }, end: { x: 247, y: 210 } }
                 ],
                 'Mayúscula Manuscrita': [
-                    { start: { x: 140, y: 130 }, end: { x: 140, y: 290 } },
-                    { start: { x: 140, y: 290 }, end: { x: 160, y: 325 } },
-                    { start: { x: 160, y: 325 }, end: { x: 190, y: 340 } },
-                    { start: { x: 190, y: 340 }, end: { x: 220, y: 325 } },
-                    { start: { x: 220, y: 325 }, end: { x: 240, y: 290 } },
-                    { start: { x: 240, y: 290 }, end: { x: 240, y: 130 } }
+{ start: { x: 101, y: 123 }, end: { x: 113, y: 113 } },
+{ start: { x: 113, y: 113 }, end: { x: 129, y: 111 } },
+{ start: { x: 129, y: 111 }, end: { x: 138, y: 119 } },
+{ start: { x: 138, y: 119 }, end: { x: 141.82688204815605, y: 136.02255409935995 } },
+{ start: { x: 141.82688204815605, y: 136.02255409935995 }, end: { x: 140, y: 284 } },
+{ start: { x: 140, y: 284 }, end: { x: 148, y: 313 } },
+{ start: { x: 148, y: 313 }, end: { x: 170, y: 335 } },
+{ start: { x: 170, y: 335 }, end: { x: 200, y: 350 } },
+{ start: { x: 200, y: 350 }, end: { x: 230, y: 335 } },
+{ start: { x: 230, y: 335 }, end: { x: 254, y: 315 } },
+{ start: { x: 254, y: 315 }, end: { x: 262, y: 284 } },
+
+{ start: { x: 262, y: 284 }, end: { x: 262.7477925485052, y: 114.99888403782523 } },
+{ start: { x: 262.7477925485052, y: 114.99888403782523 }, end: { x: 262.97466020983086, y: 303.0012373060029 } },
+
+{ start: { x: 262.97466020983086, y: 303.0012373060029 }, end: { x: 266, y: 321 } },
+{ start: { x: 266, y: 321 }, end: { x: 275, y: 341 } },
+{ start: { x: 275, y: 341 }, end: { x: 290, y: 348 } },
+{ start: { x: 290, y: 348 }, end: { x: 306, y: 348 } },
+{ start: { x: 306, y: 348 }, end: { x: 322, y: 335 } },
+{ start: { x: 322, y: 335 }, end: { x: 330, y: 318 } }
                 ],
                 'Minúscula Manuscrita': [
-                    { start: { x: 150, y: 190 }, end: { x: 150, y: 250 } },
-                    { start: { x: 150, y: 250 }, end: { x: 160, y: 275 } },
-                    { start: { x: 160, y: 275 }, end: { x: 180, y: 290 } },
-                    { start: { x: 180, y: 290 }, end: { x: 210, y: 285 } },
-                    { start: { x: 210, y: 285 }, end: { x: 230, y: 270 } },
-                    { start: { x: 230, y: 270 }, end: { x: 230, y: 130 } }
+  { start: { x: 117, y: 299 }, end: { x: 132.0305617977528, y: 292.3591011235955 } },
+  { start: { x: 132.0305617977528, y: 292.3591011235955 }, end: { x: 146, y: 282 } },
+  { start: { x: 146, y: 282 }, end: { x: 156, y: 270 } },
+  { start: { x: 156, y: 270 }, end: { x: 159.43381712626996, y: 213.0068214804064 } },
+  { start: { x: 159.43381712626996, y: 213.0068214804064 }, end: { x: 160, y: 260 } },
+  { start: { x: 160, y: 260 }, end: { x: 170, y: 285 } },
+  { start: { x: 170, y: 285 }, end: { x: 190, y: 300 } },
+  { start: { x: 190, y: 300 }, end: { x: 220, y: 295 } },
+  { start: { x: 220, y: 295 }, end: { x: 240, y: 280 } },
+  { start: { x: 240, y: 280 }, end: { x: 247, y: 256 } },
+  { start: { x: 247, y: 256 }, end: { x: 250, y: 215 } },
+  { start: { x: 250, y: 215 }, end: { x: 251, y: 269 } },
+  { start: { x: 251, y: 269 }, end: { x: 258, y: 287 } },
+  { start: { x: 258, y: 287 }, end: { x: 274, y: 299 } },
+  { start: { x: 274, y: 299 }, end: { x: 290, y: 293 } },
+  { start: { x: 290, y: 293 }, end: { x: 301, y: 281 } },
+  { start: { x: 301, y: 281 }, end: { x: 309, y: 264 } },
+  { start: { x: 309, y: 264 }, end: { x: 318, y: 247 } },
+  { start: { x: 318, y: 247 }, end: { x: 330, y: 218 } }
                 ]
             }
         };
@@ -632,34 +842,7 @@ function unlockAudioAndPlayFirstSound() {
                 setupColorPalette();
                 setupImageClicks();
                 
-                // Cargar sonido de éxito usando un SVG de audio simple
-                //  successSound = {
-                //     play: () => {
-                //         // Crear un sonido simple usando Web Audio API
-                //         if (audioUnlocked) {
-                //             try {
-                //                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                //                 const oscillator = audioCtx.createOscillator();
-                //                 const gainNode = audioCtx.createGain();
-                                
-                //                 oscillator.connect(gainNode);
-                //                 gainNode.connect(audioCtx.destination);
-                                
-                //                 oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-                //                 oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
-                //                 oscillator.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2);
-                                
-                //                 gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                //                 gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-                                
-                //                 oscillator.start(audioCtx.currentTime);
-                //                 oscillator.stop(audioCtx.currentTime + 0.3);
-                //             } catch (e) {
-                //                 console.log('No se pudo reproducir el sonido de éxito');
-                //             }
-                //         }
-                //     }
-                // };
+
                 successSound = new Howl({ 
                     src: ['810706__rayfaiq__short-loud-success-sound.mp3'],
                     onloaderror: function() {
@@ -758,8 +941,8 @@ function unlockAudioAndPlayFirstSound() {
             }
         }
 
-function getRandomImagesForA() {
-    const allImagesA = letterImages['A']; // Array con las 4 imágenes
+function getRandomImagesForA(allImagesA) {
+    //let allImagesA = letterImages['A']; // Array con las 4 imágenes
     const shuffled = [...allImagesA]; // Crear una copia del array
     // Algoritmo Fisher-Yates para mezclar el array
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -775,20 +958,15 @@ function getRandomImagesForA() {
             const image1 = document.getElementById('image1');
             const image2 = document.getElementById('image2');
             
-            // if (letterImages[letterKey]) {
-            //     image1.src = letterImages[letterKey][0].svg;
-            //     image1.alt = letterImages[letterKey][0].name;
-            //     image2.src = letterImages[letterKey][1].svg;
-            //     image2.alt = letterImages[letterKey][1].name;
-            // }
+
 
     console.log('Actualizando imágenes para letra:', letterKey); // Para debug
     console.log('Datos disponibles:', letterImages[letterKey]); // Para debug
     
     if (letterImages[letterKey]) {
-        if (letterKey === 'A') {
+        if (letterKey === 'A' || letterKey === 'E' || letterKey === 'I' || letterKey === 'O' || letterKey === 'U' ) {
 
-            const randomImages = getRandomImagesForA();
+            const randomImages = getRandomImagesForA(letterImages[letterKey]);
     console.log('randomImages ', randomImages);
 
             // Para A, usar las rutas de archivos
@@ -812,16 +990,7 @@ function getRandomImagesForA() {
     }
         }
 
-        // function playLetterAudio(letterKey) {
-        //     // Sintetizar voz para la letra
-        //     if ('speechSynthesis' in window && audioUnlocked) {
-        //         const utterance = new SpeechSynthesisUtterance(`Hola Luciano, esta es la letra ${letterKey}${letterKey}${letterKey}${letterKey}${letterKey}${letterKey}`);
-        //         utterance.lang = 'es-ES';
-        //         utterance.rate = 0.8;
-        //         utterance.pitch = 1.2;
-        //         speechSynthesis.speak(utterance);
-        //     }
-        // }
+
         function playLetterAudio(letterKey) {
            if (letterAudios[letterKey] && letterAudios[letterKey].state() === 'loaded') {
                letterAudios[letterKey].play();
@@ -1022,31 +1191,6 @@ function getRandomImagesForA() {
             });
         }
 
-        // function unlockAudioAndPlayImageSound(img, index) {
-        //     // Activar el efecto visual
-        //     img.classList.add('active');
-        //     setTimeout(() => {
-        //         img.classList.remove('active');
-        //     }, 500);
-            
-        //     // Desbloquear audio si es necesario
-        //     if (!audioUnlocked) {
-        //         audioUnlocked = true;
-        //     }
-            
-        //     // Reproducir el audio del nombre del elemento
-        //     if ('speechSynthesis' in window) {
-        //         const currentCombination = allCombinations[currentCombinationIndex];
-        //         const letterKey = currentCombination.letter;
-        //         const imageName = letterImages[letterKey] ? letterImages[letterKey][index].name : `Imagen ${index + 1}`;
-
-        //         const utterance = new SpeechSynthesisUtterance(imageName);
-        //         utterance.lang = 'es-ES';
-        //         utterance.rate = 0.9;
-        //         utterance.pitch = 1.1;
-        //         speechSynthesis.speak(utterance);
-        //     }
-        // }
         function unlockAudioAndPlayImageSound(img, index) {
     img.classList.add('active');
     setTimeout(() => {
@@ -1072,15 +1216,7 @@ function getRandomImagesForA() {
     }
 }
 
-        // function touchStarted() {
-        //     if (!audioUnlocked) {
-        //         audioUnlocked = true;
-        //     }
 
-        //     if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-        //         return false;
-        //     }
-        // }
         function touchStarted() {
             unlockAudioAndPlayFirstSound(); // Agregar esta línea
 
@@ -1088,12 +1224,6 @@ function getRandomImagesForA() {
                 return false;
             }
         }
-
-        // function mousePressed() {
-        //     if (!audioUnlocked) {
-        //         audioUnlocked = true;
-        //     }
-        // }
 
         function mousePressed() {
             unlockAudioAndPlayFirstSound(); // Agregar esta línea
